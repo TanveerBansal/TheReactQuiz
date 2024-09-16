@@ -52,7 +52,7 @@ function reducer(state, action) {
       return { ...initialState, questions: state.questions, status: "ready" }
     // return { ...state, status: "active", index: 0, answer: null, points: 0 }
     case 'tick':
-      return { ...state, secondsRemaining: state.secondsRemaining - 1, status : state.secondsRemaining === 0 ? "finished" : state.status}
+      return { ...state, secondsRemaining: state.secondsRemaining - 1, status: state.secondsRemaining === 0 ? "finished" : state.status }
 
     default:
       throw new Error("Action Unknown");
@@ -64,12 +64,17 @@ export default function App() {
   const [{ questions, status, index, answer, points, highscore, secondsRemaining }, dispatch] = useReducer(reducer, initialState)
   const numQuestions = questions.length
   const maxPossiblePoints = questions.reduce((prev, curr) => (prev + curr.points), 0)
-  //  console.log(maxPossiblePoints);
+  // console.log(questions.questions);
 
   useEffect(() => {
-    fetch('http://localhost:8000/questions')
+    fetch('http://localhost:5000/data')
+      // fetch('http://localhost:8000/questions') //to use this remove .questions in payload
       .then((res) => res.json()
-        .then((data) => dispatch({ type: "dataReceived", payload: data })))
+        .then((data) => {
+          // console.log(data.questions)
+          dispatch({ type: "dataReceived", payload: data.questions })
+        })
+      )
       .catch((err) => dispatch({ type: "dataFailed" }))
   }, [])
   return (

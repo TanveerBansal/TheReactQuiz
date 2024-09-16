@@ -67,7 +67,7 @@ export default function App() {
   // console.log(questions.questions);
 
   useEffect(() => {
-    fetch('http://localhost:5000/data')
+    fetch('https://thereactquiz.onrender.com/data')
       // fetch('http://localhost:8000/questions') //to use this remove .questions in payload
       .then((res) => res.json()
         .then((data) => {

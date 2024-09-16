@@ -145,7 +145,7 @@ const staticData = {
 
 const corsOption = {
     // origin: "http://localhost:3000"
-    origin: "https://the-react-quiz-five.vercel.app/"
+    origin: "https://the-react-quiz-tan.vercel.app/"
 }
 app.use(cors(corsOption))
 app.use(express.urlencoded({ extended: true }))
